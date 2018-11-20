@@ -1,0 +1,9 @@
+* 최초 1회 페어링 Bluetooth paring 
+bluetoothctl
+pair  ***
+trust ***
+
+* Raspberry Pi bluez설치
+sudo apt-get install libbluetooth-dev
+sudo apt-get install python3-pip
+sudo pip3 install pybluez
