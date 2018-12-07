@@ -10,7 +10,7 @@ import sys
 from bluetooth import *
 import subprocess
 sys.path.append("../core/")
-from interface import *
+from control import *
 
 server_sock=BluetoothSocket( RFCOMM )
 server_sock.bind(("",PORT_ANY))
@@ -31,13 +31,13 @@ print("Waiting for connection on RFCOMM channel %d" % port)
 
 client_sock, client_info = server_sock.accept()
 print("Accepted connection from ", client_info)
-text = Text()
+ctrl = Controller()
 try:
     while True:
-        data = client_sock.recv(1024)
-        string = data.decode("utf-8")
-        if len(data) == 0: break
-        text.set_string(string)
+        buf = client_sock.recv(1024)
+        data = buf.decode("utf-8")
+        if len(buf) == 0: break
+        ctrl.process_data(data)
 except IOError:
     pass
 
