@@ -16,7 +16,7 @@ class RunText(SampleBase):
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
         font = graphics.Font()
-        font.LoadFont("../fonts/6x10.bdf")
+        font.LoadFont("../fonts/nanumbarungothic10.bdf")
         color_list = [int(x)  for x in self.args.color.split(' ')]
         textColor = graphics.Color(color_list[0], color_list[1], color_list[2])
         pos = offscreen_canvas.width
@@ -26,7 +26,7 @@ class RunText(SampleBase):
             offscreen_canvas.Clear()
             if fix == 1:
                 pos = 0
-            len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text)
+            len = graphics.DrawText(offscreen_canvas, font, pos, 10, textColor, my_text.decode('utf-8'))
             if fix == 0:
                 pos -= 1
             if (pos + len < 0):
